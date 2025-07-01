@@ -10,7 +10,7 @@ import subprocess
 import signal
 import gc
 
-# --- 配置常量 ---
+# --- 常量配置 ---
 MODELS_BASE_DIR = "/home/wanghaonan/project/llm_profiling/models/"
 RESULTS_BASE_DIR = "/home/wanghaonan/project/llm_profiling/results/"
 DEFAULT_GPU_MEMORY_UTILIZATION = 0.85
