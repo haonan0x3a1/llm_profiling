@@ -1,0 +1,35 @@
+# 默认实验配置
+model_path: "/home/wanghaonan/project/llm_profiling/models/Qwen2.5-72B-Instruct"
+model_name: "Qwen2.5-72B-Instruct"
+
+# 推理参数
+prompt: "Hello! Can you tell me about the importance of artificial intelligence in modern society?"
+max_tokens: 200
+temperature: 0.7
+tensor_parallel_size: 1
+batch_size: 1
+
+# 分析模式
+# - inference_only: 仅运行推理，记录基本性能指标
+# - nsys: 使用Nsight System进行系统级分析
+# - nsys_ncu: 使用Nsight System + Nsight Compute进行完整分析
+profile_mode: "inference_only"
+
+# Nsight System选项
+nsys_options:
+  cuda: true
+  gpu_metrics: true
+  stats: true
+  sample_rate: 100000
+
+# Nsight Compute选项
+ncu_options:
+  kernel_name: null  # null表示分析所有kernel，可以指定特定kernel名称
+  launch_count: 10   # 分析前N个最耗时的kernel
+  kernel_count: 100  # 最多分析的kernel数量
+  set: "full"        # 指标集：basic, full, detailed
+  metrics:
+    - "sm__cycles_elapsed.avg"
+    - "sm__cycles_elapsed.avg.per_second"
+    - "dram__bytes.sum"
+    - "gpu__compute_memory_throughput.avg.pct_of_peak_sustained_elapsed" 
